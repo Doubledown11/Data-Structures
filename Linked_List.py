@@ -3,7 +3,6 @@ A Linked List Implementation
 
 Used to learn Leetcode
 
-
 Dalice Dieckman
 
 Date: 2024-12-11
@@ -62,7 +61,7 @@ class LinkedList(object):
             position += 1
             current_node = current_node.next
 
-            if not current_node:
+            if position == index -1:
                 new_node = Node(data)
                 new_node.next = current_node.next
                 current_node.next = new_node
@@ -96,78 +95,77 @@ class LinkedList(object):
         return new_node
 
 
-    def update_node(self, val, position):
+    def update_node(self, val, index):
         """
         Changes the value at a given node
         """
 
         current_node = self.head
-        index = 0
+        position = 0
 
         # If our chosen node is at the start of the list
-        if index == position - 1:
+        if index == 0:
             current_node.data = val
             return current_node
 
         else:
             # we iterate up to but not onto the index.
             # IE) As we choose node 6, it will be at index 5.
-            while not current_node and index != position - 1:
-                index += 1
+            while not index >= position:
+                position += 1
                 current_node = current_node.next
 
             # After iterating to the target node, we need to update its value.
-            if not current_node:
-                current_node.data = val
-                return current_node
-            else:
-                print("Index not present")
+                if index == position:
+                    current_node.data = val
+                    return current_node
+            
+            print("Index not present")
 
 
-    def delete_node(self, position):
+    def delete_node(self, index):
         """
         Remove a node from the list
         """
 
         # If the list is empty we can't remove anything.
-        if self.head is None:
+        if not self.head:
             print("List is empty")
 
         current_node = self.head
-        current_pos = 1
+        position = 0
         prev_node = None
 
         # If we are trying to remove the first node.
-        if position == 1:
+        if index == 0:
             self.head = self.head.next
             self.count -= 1
             return
 
         else:
             # Iterate until the node
-            while current_node and current_pos < position:
+            while position <= index:
                 prev_node = current_node
                 current_node = current_node.next
                 current_pos += 1
 
-            # If the position is out of range
-            if current_node is None:
-                print("Position not in the list")
+            if index == position:
+                # Remove node when found
+                prev_node.next = current_node.next
+                self.count -= 1
                 return
+            
+            # If the position is out of range
+            print("Index not preset")
+            
 
-            # Remove node when found
-            prev_node.next = current_node.next
-            self.count -= 1
-            return
-
+            
 
     def get_head(self):
         """
         Returns the head of the linked list as a node
         """
-
-        current_node = self.head
-        return current_node
+        return self.head
 
 
     def get_head_val(self):
@@ -214,11 +212,11 @@ class LinkedList(object):
         length = 0
         current_node = self.head
 
-        if current_node is None:
+        if not current_node:
             return length
 
         else:
-            while current_node is not None:
+            while current_node:
                 length += 1
                 current_node = current_node.next
                 
