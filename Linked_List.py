@@ -157,25 +157,7 @@ class LinkedList(object):
             
             # If the position is out of range
             print("Index not preset")
-            
-
-            
-
-    def get_head(self):
-        """
-        Returns the head of the linked list as a node
-        """
-        return self.head
-
-
-    def get_head_val(self):
-        """
-        Gets the value from the head of the linked list
-        """
-
-        node = self.head
-        return node.data
-
+        
 
     def print(self):
         """
