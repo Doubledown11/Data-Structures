@@ -186,20 +186,3 @@ class LinkedList(object):
         return list_data
 
 
-    def get_length(self):
-        """
-        Returns the length of the list
-        """
-
-        length = 0
-        current_node = self.head
-
-        if not current_node:
-            return length
-
-        else:
-            while current_node:
-                length += 1
-                current_node = current_node.next
-                
-            return length
