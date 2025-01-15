@@ -55,8 +55,8 @@ class LinkedList(object):
 
         position = 0
         current_node = self.head
-        while not current_node and position+1 != index:
-            # We iterate until we reach the tail (None)
+        while current_node and position+1 != index:
+            # We iterate until we reach the tail (current_node is None)
             # or until we are just behind the node where the target index is.
             position += 1
             current_node = current_node.next
@@ -111,7 +111,7 @@ class LinkedList(object):
         else:
             # we iterate up to but not onto the index.
             # IE) As we choose node 6, it will be at index 5.
-            while not index >= position:
+            while position >= index:
                 position += 1
                 current_node = current_node.next
 
